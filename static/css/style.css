@@ -1,0 +1,247 @@
+/* --- VARIABLES --- */
+:root {
+    --bg-body: #F5F5F7;
+    --text-main: #1D1D1F;
+    --text-muted: #86868B;
+    --accent-blue: #0071E3;
+    --accent-hover: #0077ED;
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.1);
+    --shadow-hover: 0 20px 50px -12px rgba(0,0,0,0.15);
+    --radius-xl: 28px;
+    --radius-s: 12px;
+}
+
+/* --- GLOBAL --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* Arrière-plan subtil */
+body::before {
+    content: '';
+    position: fixed;
+    top: -20%;
+    left: -10%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, rgba(0,113,227,0.08) 0%, rgba(255,255,255,0) 60%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 24px;
+}
+
+/* --- HEADER --- */
+.hero-section {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.hero-badge {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent-blue);
+    background: rgba(0, 113, 227, 0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0;
+    /* Correction de l'avertissement VS Code ici */
+    background: linear-gradient(180deg, #1D1D1F 20%, #434344 100%);
+    -webkit-background-clip: text;
+    background-clip: text; 
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 20px auto 0;
+    font-weight: 400;
+}
+
+/* --- GRID SYSTEM --- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+}
+
+/* --- CARDS DESIGN --- */
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px); 
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: var(--shadow-hover);
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.col-12 { grid-column: span 12; }
+.col-6 { grid-column: span 6; }
+.col-4 { grid-column: span 4; }
+
+.card-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.card-heading {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+    letter-spacing: -0.02em;
+}
+
+.card-body {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* --- FORMULE --- */
+.equation-wrapper {
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: var(--radius-s);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "SF Mono", monospace;
+    font-weight: 600;
+    color: var(--accent-blue);
+    margin-top: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.fraction { text-align: center; font-size: 0.9em;}
+.num { border-bottom: 2px solid #E5E5EA; padding-bottom: 4px; display: block; color: var(--text-main); }
+.den { padding-top: 4px; display: block; color: var(--text-muted); }
+
+/* --- INDICATEURS --- */
+.gauge-container { margin-top: auto; padding-top: 20px; }
+.gauge-val { font-size: 3rem; font-weight: 700; letter-spacing: -0.05em; }
+.green { color: #28CD41; }
+.orange { color: #FF9500; }
+.red { color: #FF3B30; }
+
+/* --- CSS DU CALCULATEUR --- */
+.input-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+.apple-input {
+    background: #FFFFFF;
+    border: 1px solid #D2D2D7;
+    padding: 14px 18px;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    flex: 1;
+    min-width: 150px;
+    outline: none;
+    transition: all 0.2s;
+    color: var(--text-main);
+}
+
+.apple-input:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 4px rgba(0,113,227,0.1);
+}
+
+.apple-btn {
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.1s;
+}
+
+.apple-btn:hover { background: var(--accent-hover); }
+.apple-btn:active { transform: scale(0.98); }
+
+/* Zone de résultat cachée/visible */
+.result-area {
+    margin-top: 30px;
+    padding: 24px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 18px;
+    display: none; /* Caché par défaut */
+    animation: fadeIn 0.5s ease;
+}
+
+.result-visible { display: block; }
+
+.result-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.result-number {
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 1.1;
+    display: block;
+    margin: 5px 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 800px) {
+    .grid { display: flex; flex-direction: column; }
+    .hero-title { font-size: 3rem; }
+    .card { padding: 30px; }
+    .input-group { flex-direction: column; }
+    .apple-btn { width: 100%; }
+}
