@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiller PE | Analyse & Simulateur</title>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header class="hero-section">
+            <span class="hero-badge">Finance Explained</span>
+            <h1 class="hero-title">Shiller PE.</h1>
+            <p class="hero-desc">La boussole des investisseurs long terme.</p>
+        </header>
+
+        <div class="grid">
+
+            <div class="card col-12">
+                <div>
+                    <div class="card-label">Le Concept</div>
+                    <h2 class="card-heading">Voir plus loin.</h2>
+                    <p class="card-body">Le marché est bruyant. Le ratio Shiller CAPE filtre ce bruit. En moyennant les bénéfices sur 10 ans et en ajustant l'inflation, il révèle la véritable température du marché.</p>
+                </div>
+            </div>
+
+            <div class="card col-6">
+                <div>
+                    <div class="card-label">Algorithme</div>
+                    <h2 class="card-heading">La Formule.</h2>
+                    <p class="card-body">Une mathématique simple pour une vision complexe.</p>
+                </div>
+                <div class="equation-wrapper">
+                    <span style="font-size: 1.5rem; margin-right: 15px;">CAPE = </span>
+                    <div class="fraction">
+                        <span class="num">Prix S&P 500</span>
+                        <span class="den">Moyenne Bénéfices (10 ans)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card col-6">
+                <div>
+                    <div class="card-label">Data</div>
+                    <h2 class="card-heading">Moyenne : 17.</h2>
+                    <p class="card-body">Depuis 1881, le marché gravite autour de ce chiffre. S'il s'en éloigne trop, la gravité finit toujours par le rappeler.</p>
+                </div>
+            </div>
+
+            <div class="card col-12" style="border-color: var(--accent-blue);">
+                <div>
+                    <div class="card-label" style="color: var(--accent-blue);">Simulateur</div>
+                    <h2 class="card-heading">Testez vos actions.</h2>
+                    <p class="card-body">Le prix du S&P 500 est récupéré automatiquement.</p>
+                    
+                    <div class="input-group">
+                        <input type="number" id="inputPrice" value="4500" placeholder="Prix S&P" class="apple-input">
+                        <input type="number" id="inputEarnings" placeholder="Moyenne Bénéfices (10 ans)" class="apple-input">
+                        <button onclick="calculateCAPE()" class="apple-btn">Calculer le Ratio</button>
+                    </div>
+
+                    <div id="resultArea" class="result-area">
+                        <span class="result-label">Résultat Shiller PE</span>
+                        <span id="resultValue" class="result-number">--</span>
+                        <p id="resultText" class="card-body" style="margin:0;">...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card col-4">
+                <div class="card-label">Opportunité</div>
+                <div class="gauge-container">
+                    <div class="gauge-val green">&lt; 15</div>
+                    <p class="card-body" style="font-size: 0.9rem; margin-top:5px;">Marché bon marché.</p>
+                </div>
+            </div>
+
+            <div class="card col-4">
+                <div class="card-label">Neutralité</div>
+                <div class="gauge-container">
+                    <div class="gauge-val orange">20</div>
+                    <p class="card-body" style="font-size: 0.9rem; margin-top:5px;">Zone d'équilibre.</p>
+                </div>
+            </div>
+
+            <div class="card col-4">
+                <div class="card-label">Danger</div>
+                <div class="gauge-container">
+                    <div class="gauge-val red">&gt; 30</div>
+                    <p class="card-body" style="font-size: 0.9rem; margin-top:5px;">Risque de bulle.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
