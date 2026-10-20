@@ -47,5 +47,6 @@ Référence : `Shillerpe.md` du repo `micka2000/Pr-sentation-shiller-PE`, qui d�
 15. Carte du projet mise à jour sur le portfolio (capture, résumé, tags).
 
 ### Reste à faire
-- Dater et sourcer les ratios par pays : la présentation ne donne pas de date. Trouver une source publique que le script puisse lire (pas encore cherchée).
+- Ratios par pays : remplacés par le CAPE de fin septembre 2026 publié par Siblis Research (les 12 pays de la présentation), avec crédit et lien. Mise à jour à la main : leurs conditions interdisent la collecte automatique et la republication en flux. Leur API gratuite ne couvre que des indices. worldperatio.com est lisible par un script, mais publie un P/E classique, pas un CAPE.
+- App Flask vérifiée en local : elle sert `docs/` (page, tokens, polices, données).
 - Police `rf-dewi-bold` : présente dans le projet Claude Design, absente de la copie locale des tokens.

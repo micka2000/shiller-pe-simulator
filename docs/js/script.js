@@ -47,12 +47,14 @@ const HISTORY = [
     { year: "2021", month: "2021-11", event: "Pic post-Covid", value: 38.58 }
 ];
 
-// Ratios PE par pays (présentation Shiller PE)
+// Shiller PE (CAPE) par pays, fin septembre 2026. Source : Siblis Research,
+// cité à la main (leurs conditions interdisent la collecte automatique)
+const WORLD_DATE = "septembre 2026";
 const REGIONS = [
-    { name: "Amériques", countries: [["États-Unis", 32.87], ["Canada", 22.89]] },
-    { name: "Europe", countries: [["Allemagne", 24.32], ["Espagne", 19.92], ["Italie", 19.71], ["Royaume-Uni", 18.59]] },
-    { name: "Asie", countries: [["Inde", 35.76], ["Japon", 24.99], ["Corée du Sud", 15.76], ["Chine", 15.41], ["Hong Kong", 10.25]] },
-    { name: "Océanie", countries: [["Australie", 21.16]] }
+    { name: "Amériques", countries: [["États-Unis", 35.9], ["Canada", 27.1]] },
+    { name: "Europe", countries: [["Espagne", 24.4], ["Allemagne", 22.9], ["Italie", 20.9], ["Royaume-Uni", 19.6]] },
+    { name: "Asie", countries: [["Japon", 35.4], ["Corée du Sud", 31.8], ["Inde", 28.7], ["Chine", 17.1], ["Hong Kong", 10.2]] },
+    { name: "Océanie", countries: [["Australie", 20.1]] }
 ];
 
 const fmt = (v) => v.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 2 });
@@ -140,13 +142,13 @@ function renderWorld() {
 
     document.querySelectorAll(".hbar-row").forEach((el) => {
         const [region, country, value] = el.dataset.tip.split("|");
-        attachTooltip(el, '<strong>' + country + '</strong> · ' + region + '<br>PE : ' + fmt(parseFloat(value)));
+        attachTooltip(el, '<strong>' + country + '</strong> · ' + region + '<br>CAPE : ' + fmt(parseFloat(value)) + '<br>Fin ' + WORLD_DATE);
         // La valeur suit la fin de la barre
         el.querySelector(".hbar-value").style.left = "calc(" + pct(parseFloat(value)) + "% + 8px)";
     });
 
     document.getElementById("worldTable").innerHTML =
-        '<thead><tr><th>Région</th><th>Pays</th><th>PE</th></tr></thead><tbody>' +
+        '<thead><tr><th>Région</th><th>Pays</th><th>CAPE</th></tr></thead><tbody>' +
         REGIONS.flatMap((r) => r.countries.map(([c, v]) => '<tr><td>' + r.name + '</td><td>' + c + '</td><td>' + fmt(v) + '</td></tr>')).join("") +
         '</tbody>';
 }

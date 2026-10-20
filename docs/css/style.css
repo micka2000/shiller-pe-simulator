@@ -704,3 +704,5 @@ h3 {
   .hbar-label { flex-basis: 90px; }
   .footer-inner { flex-direction: column; }
 }
+
+.source a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
