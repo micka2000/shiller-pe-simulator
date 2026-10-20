@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shiller PE | Analyse & Simulateur</title>
-    
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -22,7 +22,8 @@
                 <div>
                     <div class="card-label">Le Concept</div>
                     <h2 class="card-heading">Voir plus loin.</h2>
-                    <p class="card-body">Le marché est bruyant. Le ratio Shiller CAPE filtre ce bruit. En moyennant les bénéfices sur 10 ans et en ajustant l'inflation, il révèle la véritable température du marché.</p>
+                    <p class="card-body">Le marché est bruyant. Le ratio Shiller filtre ce bruit. En moyennant les bénéfices sur 10 ans et en ajustant l'inflation, il lisse les cycles économiques et révèle la véritable température du marché.</p>
+                    <p class="card-body">Aussi appelé <strong>CAPE</strong> (<em>Cyclically Adjusted Price-to-Earnings</em>), il a été popularisé par <strong>Robert Shiller</strong>, prix Nobel d'économie en 2013.</p>
                 </div>
             </div>
 
@@ -36,7 +37,7 @@
                     <span style="font-size: 1.5rem; margin-right: 15px;">CAPE = </span>
                     <div class="fraction">
                         <span class="num">Prix S&P 500</span>
-                        <span class="den">Moyenne Bénéfices (10 ans)</span>
+                        <span class="den">Moyenne Bénéfices ajustés (10 ans)</span>
                     </div>
                 </div>
             </div>
@@ -44,20 +45,40 @@
             <div class="card col-6">
                 <div>
                     <div class="card-label">Data</div>
-                    <h2 class="card-heading">Moyenne : 17.</h2>
-                    <p class="card-body">Depuis 1881, le marché gravite autour de ce chiffre. S'il s'en éloigne trop, la gravité finit toujours par le rappeler.</p>
+                    <h2 class="card-heading">Moyenne : 16-17.</h2>
+                    <p class="card-body">Depuis 1881, le S&P 500 gravite autour de ce chiffre. S'il s'en éloigne trop, la gravité finit toujours par le rappeler.</p>
                 </div>
+            </div>
+
+            <h2 class="section-title col-12">Pourquoi c'est utile.</h2>
+
+            <div class="card col-4">
+                <div class="card-label">Évaluation</div>
+                <h3 class="card-subheading">Repérer les excès.</h3>
+                <p class="card-body">Identifier les bulles et les sous-évaluations du marché.</p>
+            </div>
+
+            <div class="card col-4">
+                <div class="card-label">Long terme</div>
+                <h3 class="card-subheading">Moins volatil.</h3>
+                <p class="card-body">Dix ans de bénéfices pèsent plus qu'une mauvaise année : le ratio bouge moins que le PE classique.</p>
+            </div>
+
+            <div class="card col-4">
+                <div class="card-label">Historique</div>
+                <h3 class="card-subheading">Un lien avec l'avenir.</h3>
+                <p class="card-body">Un CAPE élevé est historiquement suivi de rendements plus faibles sur la décennie suivante.</p>
             </div>
 
             <div class="card col-12" style="border-color: var(--accent-blue);">
                 <div>
                     <div class="card-label" style="color: var(--accent-blue);">Simulateur</div>
                     <h2 class="card-heading">Testez vos actions.</h2>
-                    <p class="card-body">Le prix du S&P 500 est récupéré automatiquement.</p>
-                    
+                    <p class="card-body">Entrez le prix actuel du S&P 500 et la moyenne de ses bénéfices ajustés sur 10 ans.</p>
+
                     <div class="input-group">
-                        <input type="number" id="inputPrice" value="4500" placeholder="Prix S&P" class="apple-input">
-                        <input type="number" id="inputEarnings" placeholder="Moyenne Bénéfices (10 ans)" class="apple-input">
+                        <input type="number" id="inputPrice" value="4500" placeholder="Prix S&P" class="apple-input" aria-label="Prix du S&P 500">
+                        <input type="number" id="inputEarnings" placeholder="Moyenne Bénéfices (10 ans)" class="apple-input" aria-label="Moyenne des bénéfices sur 10 ans">
                         <button onclick="calculateCAPE()" class="apple-btn">Calculer le Ratio</button>
                     </div>
 
@@ -65,6 +86,7 @@
                         <span class="result-label">Résultat Shiller PE</span>
                         <span id="resultValue" class="result-number">--</span>
                         <p id="resultText" class="card-body" style="margin:0;">...</p>
+                        <p id="resultCompare" class="card-body result-compare"></p>
                     </div>
                 </div>
             </div>
@@ -73,14 +95,14 @@
                 <div class="card-label">Opportunité</div>
                 <div class="gauge-container">
                     <div class="gauge-val green">&lt; 15</div>
-                    <p class="card-body" style="font-size: 0.9rem; margin-top:5px;">Marché bon marché.</p>
+                    <p class="card-body" style="font-size: 0.9rem; margin-top:5px;">Marché bon marché : opportunités d'achat.</p>
                 </div>
             </div>
 
             <div class="card col-4">
                 <div class="card-label">Neutralité</div>
                 <div class="gauge-container">
-                    <div class="gauge-val orange">20</div>
+                    <div class="gauge-val orange">15 à 25</div>
                     <p class="card-body" style="font-size: 0.9rem; margin-top:5px;">Zone d'équilibre.</p>
                 </div>
             </div>
@@ -88,13 +110,76 @@
             <div class="card col-4">
                 <div class="card-label">Danger</div>
                 <div class="gauge-container">
-                    <div class="gauge-val red">&gt; 30</div>
-                    <p class="card-body" style="font-size: 0.9rem; margin-top:5px;">Risque de bulle.</p>
+                    <div class="gauge-val red">&gt; 25</div>
+                    <p class="card-body" style="font-size: 0.9rem; margin-top:5px;">Marché surévalué, risque de bulle.</p>
+                </div>
+            </div>
+
+            <div class="card col-12">
+                <div>
+                    <div class="card-label">Histoire</div>
+                    <h2 class="card-heading">Les grands rendez-vous.</h2>
+                    <p class="card-body">Shiller PE du S&P 500 lors de quelques pics et creux. La ligne pointillée marque la moyenne historique.</p>
+                </div>
+                <div id="historyChart" class="chart" role="img" aria-label="Shiller PE du S&P 500 lors des grands pics et creux depuis 1929"></div>
+                <details class="data-table">
+                    <summary>Voir les données</summary>
+                    <table id="historyTable"></table>
+                </details>
+                <p class="chart-source">Valeurs approximatives. Source : multpl.com.</p>
+            </div>
+
+            <div class="card col-12">
+                <div>
+                    <div class="card-label">Le monde</div>
+                    <h2 class="card-heading">Chaque marché a sa température.</h2>
+                    <p class="card-body">Ratio PE par pays, regroupé par région. La ligne pointillée marque 17, la moyenne historique du S&P 500.</p>
+                </div>
+                <div id="worldLegend" class="legend"></div>
+                <div id="worldChart" class="chart"></div>
+                <details class="data-table">
+                    <summary>Voir les données</summary>
+                    <table id="worldTable"></table>
+                </details>
+                <p class="chart-source">Valeurs reprises de la présentation Shiller PE.</p>
+            </div>
+
+            <h2 class="section-title col-12">Ses limites.</h2>
+
+            <div class="card col-4">
+                <div class="card-label">Contexte</div>
+                <h3 class="card-subheading">Les taux d'intérêt.</h3>
+                <p class="card-body">Quand les taux sont bas, des valorisations élevées peuvent durer. Le ratio ne le reflète pas.</p>
+            </div>
+
+            <div class="card col-4">
+                <div class="card-label">Secteurs</div>
+                <h3 class="card-subheading">Pas pour tout.</h3>
+                <p class="card-body">Il est mal adapté à l'analyse de certaines industries.</p>
+            </div>
+
+            <div class="card col-4">
+                <div class="card-label">Prédiction</div>
+                <h3 class="card-subheading">Pas une boule de cristal.</h3>
+                <p class="card-body">Il signale un risque, il ne date pas les krachs.</p>
+            </div>
+
+            <div class="card col-12">
+                <div>
+                    <div class="card-label">En résumé</div>
+                    <h2 class="card-heading">Un outil, pas un oracle.</h2>
+                    <p class="card-body">Un outil puissant pour l'investisseur long terme, qui aide à repérer les moments d'achat ou de vente. À combiner avec d'autres indicateurs pour une analyse complète.</p>
+                </div>
+                <div class="resources">
+                    <a href="http://www.econ.yale.edu/~shiller/" target="_blank" rel="noopener">Site officiel de Robert Shiller ↗</a>
+                    <a href="https://www.multpl.com/shiller-pe" target="_blank" rel="noopener">Données historiques du Shiller PE ↗</a>
                 </div>
             </div>
 
         </div>
     </div>
+
+    <div id="tooltip" class="tooltip" role="status"></div>
 
     <script src="js/script.js"></script>
 

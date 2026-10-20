@@ -237,11 +237,281 @@ body::before {
     to { opacity: 1; transform: translateY(0); }
 }
 
+
+/* --- SECTIONS --- */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 48px 0 0;
+}
+
+.card-subheading {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    letter-spacing: -0.02em;
+}
+
+.card:has(.card-subheading) { justify-content: flex-start; }
+.equation-wrapper > span { white-space: nowrap; }
+
+.card-body strong { color: var(--text-main); font-weight: 600; }
+
+.result-compare { margin: 8px 0 0; font-size: 1rem; }
+
+/* --- GRAPHIQUES --- */
+.chart { margin-top: 32px; }
+
+.chart-source {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 12px 0 0;
+}
+
+.tooltip {
+    position: fixed;
+    pointer-events: none;
+    background: var(--text-main);
+    color: #FFFFFF;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    padding: 8px 12px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 10;
+}
+
+.tooltip-visible { opacity: 1; }
+
+/* Colonnes historiques */
+.cols {
+    position: relative;
+    display: flex;
+    gap: 2px;
+    height: 260px;
+    padding-left: 76px;
+    border-bottom: 1px solid #D2D2D7;
+}
+
+.col-slot {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    outline: none;
+    cursor: default;
+}
+
+.col-bar {
+    width: 60%;
+    max-width: 48px;
+    background: var(--accent-blue);
+    border-radius: 4px 4px 0 0;
+    transition: opacity 0.2s;
+}
+
+.col-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 6px;
+}
+
+.cols:hover .col-bar { opacity: 0.45; }
+.cols .col-slot:hover .col-bar,
+.cols .col-slot:focus .col-bar { opacity: 1; }
+
+.ref-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 1.5px dashed var(--text-muted);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.ref-line span {
+    position: absolute;
+    left: 0;
+    top: -10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.85);
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+.col-labels {
+    display: flex;
+    gap: 2px;
+    padding-left: 76px;
+    margin-top: 10px;
+}
+
+.col-labels div {
+    flex: 1;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.3;
+}
+
+.col-labels strong {
+    display: block;
+    color: var(--text-main);
+    font-size: 0.9rem;
+}
+
+/* Barres par pays */
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--text-main);
+}
+
+.legend-item i {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+}
+
+.region + .region { margin-top: 20px; }
+
+.region-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.hbar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1px 0;
+    outline: none;
+}
+
+.hbar-label {
+    flex: 0 0 110px;
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+.hbar-track {
+    position: relative;
+    flex: 1;
+    height: 22px;
+}
+
+.hbar {
+    height: 100%;
+    border-radius: 0 4px 4px 0;
+    transition: opacity 0.2s;
+}
+
+.hbar-ref {
+    position: absolute;
+    top: -3px;
+    bottom: -3px;
+    border-left: 1.5px dashed var(--text-muted);
+    z-index: 1;
+}
+
+.hbar-value {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+    background: rgba(255,255,255,0.85);
+    padding: 0 4px;
+    border-radius: 4px;
+    z-index: 2;
+}
+
+#worldChart:hover .hbar { opacity: 0.45; }
+#worldChart .hbar-row:hover .hbar,
+#worldChart .hbar-row:focus .hbar { opacity: 1; }
+
+/* Tableaux de données */
+.data-table { margin-top: 20px; }
+
+.data-table summary {
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-blue);
+}
+
+.data-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 0.9rem;
+}
+
+.data-table th,
+.data-table td {
+    text-align: left;
+    padding: 6px 8px;
+    border-bottom: 1px solid #E5E5EA;
+}
+
+.data-table th { color: var(--text-muted); font-weight: 600; }
+.data-table td:last-child,
+.data-table th:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* Ressources */
+.resources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.resources a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 16px;
+    background: rgba(0, 113, 227, 0.08);
+    border-radius: 12px;
+}
+
+.resources a:hover { background: rgba(0, 113, 227, 0.15); }
+
 /* --- RESPONSIVE --- */
 @media (max-width: 800px) {
     .grid { display: flex; flex-direction: column; }
     .hero-title { font-size: 3rem; }
-    .card { padding: 30px; }
     .input-group { flex-direction: column; }
     .apple-btn { width: 100%; }
+    .section-title { font-size: 2rem; margin-top: 24px; }
+    .container { padding: 48px 16px; }
+    .card { padding: 24px 20px; }
+    .cols, .col-labels { padding-left: 56px; }
+    .col-labels div { min-width: 0; }
+    .col-labels span { display: none; }
+    .col-labels strong { font-size: 0.75rem; }
+    .col-value { font-size: 0.7rem; }
+    .ref-line span { width: 50px; font-size: 0.7rem; line-height: 1.1; top: -14px; }
+    .hbar-label { flex-basis: 90px; font-size: 0.85rem; }
 }
