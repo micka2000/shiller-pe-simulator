@@ -1,0 +1,31 @@
+/* ============================================================
+   MICKAËL BROUSSE — DESIGN SYSTEM
+   tokens/fonts.css — @font-face declarations
+   JetBrains Mono is loaded by a <link> in index.html (an @import
+   placed after @font-face rules is ignored by browsers).
+   ============================================================ */
+
+/* ── Bricolage Grotesque — display (variable, local) ── */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  src: url('../assets/fonts/BricolageGrotesque-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Roboto — body (variable, local) ── */
+@font-face {
+  font-family: 'Roboto';
+  src: url('../assets/fonts/Roboto-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('../assets/fonts/Roboto-Italic-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}

@@ -1,0 +1,87 @@
+/* ============================================================
+   MICKAËL BROUSSE — DESIGN SYSTEM
+   tokens/colors.css — base palette + semantic tokens
+   Synced from Claude Design project 019dd236 (DS v1.0), via the portfolio repo.
+   ============================================================ */
+
+/* ── Base palette ── */
+:root {
+  /* Brand */
+  --color-blue:       #003FA3;
+  --color-blue-light: #1A57C5;
+  --color-blue-dim:   #002D78;
+  --color-blue-tint:  #D6E2F7;
+
+  --color-olive:      #C1C182;
+  --color-olive-dark: #9A9A52;
+  --color-olive-tint: #EEEECF;
+
+  --color-sky:        #B1C3E6;
+  --color-sky-dark:   #7A9FD4;
+  --color-sky-tint:   #EBF0FA;
+
+  /* Neutral scale */
+  --color-ink:        #0F0F0F;
+  --color-ink-90:     #1A1A1A;
+  --color-ink-70:     #3D3D3D;
+  --color-ink-50:     #6B6B6B;
+  --color-ink-30:     #A0A0A0;
+  --color-ink-10:     #E0E0E0;
+
+  --color-paper:      #F5F3EE;
+  --color-paper-dark: #EAE7E0;
+  --color-white:      #FFFFFF;
+}
+
+/* ── Semantic — light (default) ── */
+:root,
+[data-theme="light"] {
+  --bg-base:          var(--color-paper);
+  --bg-surface:       var(--color-white);
+  --bg-inset:         var(--color-paper-dark);
+  --bg-accent:        var(--color-blue);
+  --bg-accent-subtle: var(--color-blue-tint);
+
+  --fg-1:             var(--color-ink);
+  --fg-2:             var(--color-ink-70);
+  --fg-3:             var(--color-ink-50);
+  --fg-inverse:       var(--color-white);
+  --fg-accent:        var(--color-blue);
+  --fg-accent-warm:   var(--color-olive-dark);
+
+  --border-subtle:    var(--color-ink-10);
+  --border-default:   var(--color-ink-30);
+  --border-strong:    var(--color-ink-70);
+
+  --shadow-sm:        0 1px 4px rgba(0,0,0,0.06);
+  --shadow-md:        0 2px 16px rgba(0,0,0,0.07);
+  --shadow-lg:        0 8px 40px rgba(0,0,0,0.10);
+
+  --overlay-bg:       rgba(245, 243, 238, 0.85);
+}
+
+/* ── Semantic — dark ── */
+[data-theme="dark"] {
+  --bg-base:          var(--color-ink);
+  --bg-surface:       var(--color-ink-90);
+  --bg-inset:         #111111;
+  --bg-accent:        var(--color-blue);
+  --bg-accent-subtle: #001F52;
+
+  --fg-1:             #F0EEE9;
+  --fg-2:             #B5B3AE;
+  --fg-3:             #7A7975;
+  --fg-inverse:       var(--color-ink);
+  --fg-accent:        var(--color-sky);
+  --fg-accent-warm:   var(--color-olive);
+
+  --border-subtle:    #242424;
+  --border-default:   #383838;
+  --border-strong:    #606060;
+
+  --shadow-sm:        0 1px 4px rgba(0,0,0,0.4);
+  --shadow-md:        0 2px 20px rgba(0,0,0,0.5);
+  --shadow-lg:        0 8px 48px rgba(0,0,0,0.6);
+
+  --overlay-bg:       rgba(15, 15, 15, 0.85);
+}

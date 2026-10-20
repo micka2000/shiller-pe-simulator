@@ -1,0 +1,39 @@
+/* ============================================================
+   MICKAËL BROUSSE — DESIGN SYSTEM
+   tokens/spacing.css — spacing, radius, animation
+   ============================================================ */
+
+/* ── Spacing ── */
+:root {
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-12:  48px;
+  --space-16:  64px;
+  --space-24:  96px;
+  --space-32:  128px;
+}
+
+/* ── Radius ── */
+:root {
+  --radius-none:  0px;
+  --radius-sm:    4px;
+  --radius-md:    8px;
+  --radius-lg:    16px;
+  --radius-pill:  9999px;
+}
+
+/* ── Animation ── */
+:root {
+  --ease-standard:  cubic-bezier(0.25, 0, 0, 1);
+  --ease-out:       cubic-bezier(0, 0, 0.2, 1);
+  --ease-in:        cubic-bezier(0.4, 0, 1, 1);
+
+  --duration-micro: 150ms;
+  --duration-fast:  200ms;
+  --duration-base:  300ms;
+  --duration-slow:  500ms;
+}

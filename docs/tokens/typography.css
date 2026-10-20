@@ -1,0 +1,47 @@
+/* ============================================================
+   MICKAËL BROUSSE — DESIGN SYSTEM
+   tokens/typography.css — type tokens
+   Tokens only: the DS base element styles (h1–h4, p, .label…) are
+   left out because the portfolio's styles.css already styles
+   those elements per section.
+   ============================================================ */
+
+:root {
+  /* Display : Bricolage Grotesque — 800 hero/display, 700 headings
+     Body    : Roboto — 400 body, 500 UI, 600 labels
+     Mono    : JetBrains Mono — labels/eyebrows, sparingly */
+  --font-display:  'Bricolage Grotesque', 'Arial Black', sans-serif;
+  --font-body:     'Roboto', 'Helvetica Neue', sans-serif;
+  --font-mono:     'JetBrains Mono', 'Courier New', monospace;
+
+  /* Scale */
+  --text-hero:    clamp(60px, 8vw, 120px);
+  --text-display: clamp(40px, 5vw, 72px);
+  --text-h1:      clamp(32px, 3.5vw, 48px);
+  --text-h2:      clamp(24px, 2.5vw, 32px);
+  --text-h3:      22px;
+  --text-h4:      18px;
+  --text-body:    16px;
+  --text-sm:      14px;
+  --text-xs:      12px;
+  --text-label:   11px;
+
+  /* Weights */
+  --weight-ultra:   800;
+  --weight-bold:    700;
+  --weight-semi:    600;
+  --weight-regular: 400;
+  --weight-light:   300;
+
+  /* Tracking */
+  --tracking-tight:  -0.03em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.06em;
+  --tracking-wider:   0.10em;
+
+  /* Leading */
+  --leading-display: 0.95;
+  --leading-heading: 1.15;
+  --leading-body:    1.65;
+  --leading-tight:   1.3;
+}
