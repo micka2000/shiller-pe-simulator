@@ -1,0 +1,37 @@
+name: Rappel CAPE par pays
+
+# Siblis Research interdit la collecte automatique : les chiffres par pays
+# se mettent à jour à la main. Ce workflow ouvre une issue chaque mois.
+on:
+  schedule:
+    - cron: "0 13 8 * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ouvrir l'issue du mois
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          title="CAPE par pays : mise à jour de $(date -u +%Y-%m)"
+          if gh issue list -R "$REPO" --state open --search "\"$title\" in:title" --json number --jq 'length' | grep -qv '^0$'; then
+            echo "Issue déjà ouverte"
+            exit 0
+          fi
+          gh issue create -R "$REPO" --title "$title" --body "$(cat <<'BODY'
+          Siblis Research publie le CAPE par pays de fin de mois.
+
+          1. Ouvrir https://siblisresearch.com/data/cape-ratios-by-country/
+          2. Reporter les 12 valeurs dans `REGIONS` et le mois dans `WORLD_DATE` (`docs/js/script.js`)
+          3. Mettre à jour le mois dans la description du graphique (`docs/index.html`, section `#monde`)
+          4. Incrémenter `?v=` sur `js/script.js` dans `docs/index.html`
+
+          Recopier à la main, avec crédit et lien : les conditions de Siblis interdisent la collecte automatique.
+          BODY
+          )"

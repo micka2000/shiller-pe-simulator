@@ -26,32 +26,28 @@ def fetch(url):
         return response.read().decode("utf-8")
 
 
-def get_cape_history():
-    """Renvoie [(date ISO, valeur)] du plus ancien au plus récent."""
-    html = fetch(CAPE_URL)
+def parse_cape_table(html, min_rows=1000):
+    """Lit la table multpl : [(date ISO, valeur)] du plus ancien au plus récent."""
     rows = re.findall(r"<td>(\w{3}) (\d{1,2}), (\d{4})</td>\s*<td>\s*(?:&#x2002;)?\s*([\d.]+)\s*</td>", html)
-    if len(rows) < 1000:
+    if len(rows) < min_rows:
         raise RuntimeError(f"Table multpl inattendue : {len(rows)} lignes lues")
     history = [(f"{y}-{MONTHS[m]:02d}-{int(d):02d}", float(v)) for m, d, y, v in rows]
     return sorted(history)
 
 
-def get_sp500_price():
-    meta = json.loads(fetch(PRICE_URL))["chart"]["result"][0]["meta"]
+def parse_price(payload):
+    meta = json.loads(payload)["chart"]["result"][0]["meta"]
     when = datetime.fromtimestamp(meta["regularMarketTime"], tz=timezone.utc)
     return round(meta["regularMarketPrice"], 2), when.date().isoformat()
 
 
-def main():
-    history = get_cape_history()
-    price, price_date = get_sp500_price()
-
+def build_data(history, price, price_date):
     # La première ligne de multpl est la valeur du jour (non mensuelle)
     current_date, current_cape = history[-1]
     monthly = [(d, v) for d, v in history if d.endswith("-01")]
     mean = sum(v for _, v in monthly) / len(monthly)
 
-    data = {
+    return {
         "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "sp500": {"price": price, "date": price_date},
         "cape": {"current": current_cape, "date": current_date, "mean": round(mean, 2)},
@@ -61,10 +57,16 @@ def main():
         "sources": {"cape": CAPE_URL, "price": "Yahoo Finance (^GSPC)"},
     }
 
+
+def main():
+    history = parse_cape_table(fetch(CAPE_URL))
+    price, price_date = parse_price(fetch(PRICE_URL))
+    data = build_data(history, price, price_date)
+
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
-    print(f"S&P 500 {price} ({price_date}) · CAPE {current_cape} ({current_date}) · "
-          f"moyenne {mean:.2f} · {len(monthly)} mois")
+    print(f"S&P 500 {price} ({price_date}) · CAPE {data['cape']['current']} ({data['cape']['date']}) · "
+          f"moyenne {data['cape']['mean']} · {len(data['history'])} mois")
 
 
 if __name__ == "__main__":

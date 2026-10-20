@@ -20,6 +20,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Tests du script de données
+        run: python -m unittest discover tests
+
       - name: Récupérer le CAPE et le prix du S&P 500
         run: python scripts/update_data.py
 
