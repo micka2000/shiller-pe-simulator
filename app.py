@@ -4,7 +4,7 @@ from datetime import datetime, date
 import yfinance as yf
 
 # 1. Initialisation de l'app et de la Base de Données
-app = Flask(__name__)
+app = Flask(__name__, template_folder='docs', static_folder='docs', static_url_path='')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///finance.db' # Le fichier sera créé ici
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
