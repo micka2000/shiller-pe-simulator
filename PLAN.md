@@ -47,5 +47,5 @@ Référence : `Shillerpe.md` du repo `micka2000/Pr-sentation-shiller-PE`, qui d�
 15. Carte du projet mise à jour sur le portfolio (capture, résumé, tags).
 
 ### Reste à faire
-- Dater et sourcer les ratios par pays : la présentation ne donne pas de date, et aucune source gratuite ne les publie dans un format lisible par le script.
+- Dater et sourcer les ratios par pays : la présentation ne donne pas de date. Trouver une source publique que le script puisse lire (pas encore cherchée).
 - Police `rf-dewi-bold` : présente dans le projet Claude Design, absente de la copie locale des tokens.
