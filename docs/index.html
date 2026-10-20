@@ -50,6 +50,26 @@
                 </div>
             </div>
 
+            <div class="card col-12 live-card" id="liveCard" hidden>
+                <div>
+                    <div class="card-label">Aujourd'hui</div>
+                    <h2 class="card-heading">La température du jour.</h2>
+                </div>
+                <div class="live-grid">
+                    <div>
+                        <span class="result-label">Shiller PE du S&P 500</span>
+                        <span id="liveCape" class="live-number">--</span>
+                        <p id="liveStatus" class="live-status"></p>
+                    </div>
+                    <div class="live-facts">
+                        <div><span class="result-label">Écart à la moyenne</span><strong id="liveGap">--</strong></div>
+                        <div><span class="result-label">S&P 500</span><strong id="livePrice">--</strong></div>
+                        <div><span class="result-label">Bénéfices ajustés (10 ans)</span><strong id="liveE10">--</strong></div>
+                    </div>
+                </div>
+                <p id="liveSource" class="chart-source"></p>
+            </div>
+
             <h2 class="section-title col-12">Pourquoi c'est utile.</h2>
 
             <div class="card col-4">
@@ -74,7 +94,7 @@
                 <div>
                     <div class="card-label" style="color: var(--accent-blue);">Simulateur</div>
                     <h2 class="card-heading">Testez vos actions.</h2>
-                    <p class="card-body">Entrez le prix actuel du S&P 500 et la moyenne de ses bénéfices ajustés sur 10 ans.</p>
+                    <p id="simulatorIntro" class="card-body">Entrez le prix actuel du S&P 500 et la moyenne de ses bénéfices ajustés sur 10 ans.</p>
 
                     <div class="input-group">
                         <input type="number" id="inputPrice" value="4500" placeholder="Prix S&P" class="apple-input" aria-label="Prix du S&P 500">
@@ -118,15 +138,15 @@
             <div class="card col-12">
                 <div>
                     <div class="card-label">Histoire</div>
-                    <h2 class="card-heading">Les grands rendez-vous.</h2>
-                    <p class="card-body">Shiller PE du S&P 500 lors de quelques pics et creux. La ligne pointillée marque la moyenne historique.</p>
+                    <h2 id="historyHeading" class="card-heading">Les grands rendez-vous.</h2>
+                    <p id="historyDesc" class="card-body">Shiller PE du S&P 500 lors de quelques pics et creux. La ligne pointillée marque la moyenne historique.</p>
                 </div>
                 <div id="historyChart" class="chart" role="img" aria-label="Shiller PE du S&P 500 lors des grands pics et creux depuis 1929"></div>
                 <details class="data-table">
                     <summary>Voir les données</summary>
                     <table id="historyTable"></table>
                 </details>
-                <p class="chart-source">Valeurs approximatives. Source : multpl.com.</p>
+                <p id="historySource" class="chart-source">Valeurs approximatives. Source : multpl.com.</p>
             </div>
 
             <div class="card col-12">

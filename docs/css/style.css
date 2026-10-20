@@ -498,6 +498,80 @@ body::before {
 
 .resources a:hover { background: rgba(0, 113, 227, 0.15); }
 
+
+/* --- AUJOURD'HUI --- */
+.live-card[hidden] { display: none; }
+
+.live-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 16px;
+}
+
+.live-number {
+    display: block;
+    font-size: clamp(4rem, 10vw, 6rem);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    margin: 8px 0;
+}
+
+.live-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.status-dot.green { background: #28CD41; }
+.status-dot.orange { background: #FF9500; }
+.status-dot.red { background: #FF3B30; }
+
+.live-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+}
+
+.live-facts strong {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+}
+
+/* --- COURBE --- */
+#historyChart svg { display: block; overflow: visible; }
+#historyChart .grid-line { stroke: #E5E5EA; stroke-width: 1; }
+#historyChart .baseline { stroke: #D2D2D7; stroke-width: 1; }
+#historyChart .axis-label { font-size: 11px; fill: var(--text-muted); }
+#historyChart .mean-line { stroke: var(--text-muted); stroke-width: 1.5; stroke-dasharray: 4 4; }
+#historyChart .mean-label { font-size: 11px; font-weight: 600; fill: var(--text-muted); }
+#historyChart .line { fill: none; stroke: var(--accent-blue); stroke-width: 2; stroke-linejoin: round; }
+#historyChart .mark { fill: var(--accent-blue); stroke: #FFFFFF; stroke-width: 2; }
+#historyChart .mark-current { fill: var(--text-main); }
+#historyChart .mark-label { font-size: 11px; font-weight: 600; fill: var(--text-main); }
+#historyChart .mark-label,
+#historyChart .mean-label { paint-order: stroke; stroke: #FFFFFF; stroke-width: 3px; stroke-linejoin: round; }
+#historyChart .crosshair { stroke: var(--text-muted); stroke-width: 1; opacity: 0; }
+#historyChart .crosshair-dot { fill: var(--accent-blue); stroke: #FFFFFF; stroke-width: 2; opacity: 0; }
+#historyChart.hovering .crosshair,
+#historyChart.hovering .crosshair-dot { opacity: 1; }
+#historyChart .hit-area { fill: transparent; cursor: crosshair; }
+
 /* --- RESPONSIVE --- */
 @media (max-width: 800px) {
     .grid { display: flex; flex-direction: column; }
