@@ -36,7 +36,16 @@ Référence : `Shillerpe.md` du repo `micka2000/Pr-sentation-shiller-PE`, qui d�
 8. Comparaison internationale : barres horizontales groupées par région (données de la présentation). Choix délibéré de barres plutôt qu'un treemap : la surface d'un treemap fait lire une part d'un tout, alors qu'un ratio se compare sur une échelle commune.
 9. Tableau de données dépliable sous chaque graphique.
 
-### Lot 4 : à faire
-10. Prix S&P 500 en direct. GitHub Pages ne peut pas exécuter Python, et Yahoo bloque les appels depuis le navigateur. Options : une GitHub Action quotidienne qui écrit `docs/data/latest.json`, ou une API publique compatible CORS.
-11. Courbe historique complète du CAPE depuis 1881 (fichier de données Shiller, mis à jour par la même GitHub Action).
-12. Dater et sourcer les ratios par pays (la présentation ne donne pas de date).
+### Lot 4 : données du jour (fait)
+10. `scripts/update_data.py` écrit `docs/data/market.json` : CAPE mensuel depuis 1871 (multpl.com), prix du S&P 500 (Yahoo Finance), moyenne historique (17,44) et bénéfices E10 déduits.
+11. `.github/workflows/update-data.yml` le lance chaque soir de bourse (22 h 30 UTC), commite si les données changent et relance le build Pages.
+12. Le site affiche le CAPE du jour, pré-remplit le simulateur et trace la courbe complète. Sans données, il garde les colonnes des grands rendez-vous.
+
+### Lot 5 : refonte (fait)
+13. Design system Mickaël Brousse (tokens, Bricolage Grotesque + Roboto), copié depuis le portfolio dans `docs/tokens` et `docs/assets/fonts`.
+14. Thème clair et sombre, barres pays en une seule couleur (le regroupement par région porte déjà l'identité).
+15. Carte du projet mise à jour sur le portfolio (capture, résumé, tags).
+
+### Reste à faire
+- Dater et sourcer les ratios par pays : la présentation ne donne pas de date, et aucune source gratuite ne les publie dans un format lisible par le script.
+- Police `rf-dewi-bold` : présente dans le projet Claude Design, absente de la copie locale des tokens.
